@@ -1,0 +1,71 @@
+//elegir temas 
+$green-theme: true;
+$blue-theme:false;
+
+$color-letra:white;
+
+//colores generales green theme
+$verdeOscuro:#54BAB9;
+$verdeClaro:#9ED2C6; 
+$navbar-color:#EEF1FF;
+$verde-active:#89B5AF;
+$colortierra:#E9DAC1; 
+$colorgradiente:#d5a2c1;
+
+//colores generales en el blue theme  
+$azulOscuro:#5800FF;
+$azulClaro:#00D7FF;
+$navbar-azul:#72FFFF;
+$azul-active:#9FB4FF;
+$colortierraAzul:#FFD36E;
+
+//colores del borde
+$border-color: $color-letra;
+$border-style:solid;
+$border-width:0.1rem;
+$border-radius:1rem;
+
+//colores de los botones 
+$color-error: #F94C66;
+$color-warning: #FFC54D;
+$color-correct: #A0D995;
+$color-advise: #4CACBC;
+$color-shadow: #888;
+
+  //Mapa del que cogeremos los nombres para interpolarlos y los valores de los colores
+$btn-colors: (
+        "correct": $color-correct,
+        "warning": $color-warning,
+        "error": $color-error,
+        "advise": $color-advise
+);
+
+//Valor del radio para redondear los botones
+$border-radius: 0.4rem;
+
+//tamaño iconos footer
+$anchoIcono:50px;
+$altoIcono:50px;
+
+//zona de las preguntas
+
+$num_cards:4;
+$anchura-card:27em;
+$altura-card:23em;
+$anchura-card-superpuesto:20em;
+$altura-card-superpuesto:18em;
+$zindex:5;
+
+// imagenes
+$anchuraImg:25em;
+$alturaImg:15em;
+
+// vaos a poner las imagenes de los cards desde una lista
+
+$listaImagenes:(
+    "../img/bilbao.jpg",
+    "../img/cuenca.jpg",
+    "../img/granada.jpg",
+    "../img/palma.jpg"
+ );
+

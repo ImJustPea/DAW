@@ -1,0 +1,25 @@
+//seleccion del theme
+    $header-background:$verdeOscuro;
+    $navbar-background-color:$verdeClaro;
+    $navbar-active:$verde-active;
+    $resultados-background:$verdeClaro;
+    $preguntas-background:$colortierra; 
+@if $blue-theme {
+     $header-background:$azulOscuro;
+    $navbar-background-color:$azulClaro;
+    $navbar-active:$azul-active;
+    $resultados-background:$azulClaro;
+    $preguntas-background:$colortierraAzul;
+    }
+    
+  
+// animacion con vueltas de los iconos
+
+@mixin  girar($num_vueltas) {
+  transform: rotate(#{360 * $num_vueltas}deg);
+}
+@mixin duration($num_segundos) {
+  transition: linear #{$num_segundos + s};
+}
+
+

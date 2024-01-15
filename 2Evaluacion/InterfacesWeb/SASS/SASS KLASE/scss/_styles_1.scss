@@ -1,0 +1,262 @@
+//elegir temas 
+$green-theme: true;
+$blue-theme: false;
+$color-letra: white;
+
+//colores generales green theme
+$verdeOscuro: #54BAB9;
+$verdeClaro: #9ED2C6;
+$navbar-color: #EEF1FF;
+$verde-active: #89B5AF;
+$colortierra: #E9DAC1;
+$colorgradiente: #d5a2c1;
+
+//colores generales en el blue theme  
+$azulOscuro: #5800FF;
+$azulClaro: #00D7FF;
+$navbar-azul: #72FFFF;
+$azul-active: #9FB4FF;
+$colortierraAzul: #FFD36E;
+
+//colores del borde
+$border-color: $color-letra;
+$border-style: solid;
+$border-width: 0.1rem;
+$border-radius: 1rem;
+
+//colores de los botones 
+$color-error: #F94C66;
+$color-warning: #FFC54D;
+$color-correct: #A0D995;
+$color-advise: #4CACBC;
+$color-shadow: #888;
+
+//seleccion del theme
+$header-background: $verdeOscuro;
+$navbar-background-color: $verdeClaro;
+$navbar-active: $verde-active;
+$resultados-background: $verdeClaro;
+$preguntas-background: $colortierra;
+
+@if $blue-theme {
+  $header-background: $azulOscuro;
+  $navbar-background-color: $azulClaro;
+  $navbar-active: $azul-active;
+  $resultados-background: $azulClaro;
+  $preguntas-background: $colortierraAzul;
+}
+
+//Mapa del que cogeremos los nombres para interpolarlos y los valores de los colores
+$btn-colors: (
+  "correct": $color-correct,
+  "warning": $color-warning,
+  "error": $color-error,
+  "advise": $color-advise
+);
+
+//Valor del radio para redondear los botones
+$border-radius: 0.4rem;
+
+//tamaño iconos footer
+$anchoIcono: 50px;
+$altoIcono: 50px;
+
+// animacion con vueltas de los iconos
+
+@mixin girar($num_vueltas) {
+  transform: rotate(#{360 * $num_vueltas}deg);
+}
+
+@mixin duration($num_segundos) {
+  transition: linear #{$num_segundos + s};
+}
+
+//zona de las preguntas
+
+
+
+$num_cards: 4;
+$anchura-card: 20em;
+$altura-card: 18em;
+$zindex: 5;
+
+// imagenes
+$anchuraImg: 25em;
+$alturaImg: 15em;
+
+// vaos a poner las imagenes de los cards desde una lista
+
+$listaImagenes: (
+  "../img/bilbao.jpg",
+  "../img/cuenca.jpg",
+  "../img/granada.jpg",
+  "../img/palma.jpg"
+);
+
+
+
+
+// comenzamos a poner estilos sobre los elementos html
+* {
+  padding: 0.3rem;
+  margin: 0;
+}
+
+body {
+
+  background: radial-gradient(circle at top, $colorgradiente , $verdeClaro);
+}
+
+header {
+  background-color: $header-background;
+  color: $color-letra;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+
+    li {
+      border: $border-width $border-style $border-color;
+      border-radius: $border-radius;
+      padding: 1rem;
+      width: 20%;
+
+      &.active {
+        background-color: $navbar-active;
+        font-weight: bolder;
+      }
+
+      &:hover {
+        background-color: $resultados-background;
+        color: $navbar-background-color;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-letra;
+      }
+
+    }
+
+  }
+
+
+}
+
+.resultados {
+  background-color: $resultados-background;
+  padding: 0.2rem;
+  text-align: center;
+
+  .btn {
+    text-align: center;
+    text-decoration: none;
+    border-radius: $border-radius;
+    padding: 0.8rem;
+
+    &:hover {
+      box-shadow: $border-radius/2 $border-radius/2 $color-shadow;
+    }
+
+    &:active {
+      background-color: orange;
+      color: white;
+    }
+  }
+
+  //Clase adicional que le da color
+  @each $tipoBtn, $colorBtn in $btn-colors {
+    .btn-#{$tipoBtn} {
+      background-color: $colorBtn;
+    }
+  }
+
+}
+
+@each $numimagen in $listaImagenes {
+  $i: index($listaImagenes, $numimagen);
+
+  .imagen-#{$i} {
+    background-image: url($numimagen);
+  }
+}
+
+.preguntas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    background-color: $preguntas-background;
+    border: $border-width $border-style $border-color;
+    width: $anchura-card;
+    height: $altura-card;
+
+
+    @for $i from 1 through 4 {
+      .titulo-#{$i}:after {
+        content:' #{"PREGUNTA "+$i}'
+      }
+    }
+
+    .imagen {
+      width: $anchuraImg;
+      height: $alturaImg;
+      background-size: cover;
+      border: $border-width $border-style $border-color;
+      //Bucle para generar los las imagenes de la clase 
+
+    }
+  }
+}
+
+.cardsuperpuestos {
+  .cardsuperpuesto {
+    background-color: $preguntas-background;
+    position: absolute;
+    top: 180px;
+    left: 50px;
+    border: ($border-width * 3) $border-style $border-color;
+
+    .imagensuperpuesto {
+      width: 100%;
+      height: 75%;
+
+      //Bucle para generar los las imagenes de la clase 
+    }
+  }
+
+}
+
+@for $i from 1 through 4 {
+  .cardsuperpuesto-#{$i} {
+    width:#{$anchura-card + (5 * $i)};
+    height: #{$altura-card +(2 * $i)};
+    z-index: #{5 - $i};
+  }
+}
+
+
+
+
+footer {
+  background-color: $header-background;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+
+  .icono {
+    width: $anchoIcono;
+    height: $altoIcono;
+
+    &:hover {
+      @include duration(2);
+      @include girar(1);
+    }
+
+  }
+}

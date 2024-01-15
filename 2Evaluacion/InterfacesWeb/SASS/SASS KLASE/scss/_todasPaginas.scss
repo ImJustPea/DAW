@@ -1,0 +1,90 @@
+// comenzamos a poner estilos sobre los elementos html
+* {
+  padding: 0.3rem;
+  margin: 0;
+}
+
+body {
+
+  background: radial-gradient(circle at top, $colorgradiente , $verdeClaro);
+}
+
+header {
+  background-color: $header-background;
+  color: $color-letra;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+
+    li {
+      border: $border-width $border-style $border-color;
+      border-radius: $border-radius;
+      padding: 1rem;
+      width: 20%;
+
+      &.active {
+        background-color: $navbar-active;
+        font-weight: bolder;
+      }
+
+      &:hover {
+        background-color: $resultados-background;
+        color: $navbar-background-color;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-letra;
+      }
+
+    }
+
+  }
+
+
+}
+
+.resultados {
+  background-color: $resultados-background;
+  padding: 0.2rem;
+  text-align: center;
+
+  .btn {
+    text-align: center;
+    text-decoration: none;
+    border-radius: $border-radius;
+    padding: 0.8rem;
+
+    &:hover {
+      box-shadow: $border-radius/2 $border-radius/2 $color-shadow;
+    }
+
+    &:active {
+      background-color: orange;
+      color: white;
+    }
+  }
+
+  //Clase adicional que le da color
+  @each $tipoBtn, $colorBtn in $btn-colors {
+    .btn-#{$tipoBtn} {
+      background-color: $colorBtn;
+    }
+  }
+
+}
+
+footer {
+  .icono {
+    width: $anchoIcono;
+    height: $altoIcono;
+
+    &:hover {
+      @include duration(2);
+      @include girar(1);
+    }
+  }
+}

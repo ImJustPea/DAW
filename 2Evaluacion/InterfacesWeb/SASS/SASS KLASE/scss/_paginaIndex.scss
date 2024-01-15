@@ -1,0 +1,38 @@
+.preguntas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    background-color: $preguntas-background;
+    border: $border-width $border-style $border-color;
+    width: $anchura-card;
+    height: $altura-card;
+
+
+    @for $i from 1 through 4 {
+      .titulo-#{$i}:after {
+        content:' #{"PREGUNTA "+$i}'
+      }
+    }
+
+    .imagen {
+      width: $anchuraImg;
+      height: $alturaImg;
+      background-size: cover;
+      border: $border-width $border-style $border-color;
+      //Bucle para generar los las imagenes de la clase 
+
+    }
+
+    @each $numimagen in $listaImagenes {
+      $i: index($listaImagenes, $numimagen);
+
+      .imagen-#{$i} {
+        background-image: url($numimagen);
+      }
+    }
+
+  }
+}

@@ -1,0 +1,38 @@
+.cardsuperpuestos {
+    .cardsuperpuesto {
+        background-color: $preguntas-background;
+        position: absolute;
+        top: 180px;
+        left: 50px;
+        border: ($border-width * 3) $border-style $border-color;
+
+        .imagensuperpuesto {
+            width: 100%;
+            height: 75%;
+
+        }
+    }
+
+    @for $i from 1 through 4 {
+        .cardsuperpuesto-#{$i + $num_cards} {
+            width:#{$anchura-card-superpuesto + (5 * $i)};
+            height: #{$altura-card-superpuesto +(2 * $i)};
+            z-index: #{5 - $i};
+
+            .titsuperpuesto-#{$i + $num_cards}:after {
+                content:' #{"PREGUNTA "+($i + 4)}'
+            }
+
+            ;
+
+        }
+    }
+}
+
+footer.finalpagina {
+    background-color: $header-background;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
